@@ -175,7 +175,13 @@ fn install(root: impl AsRef<std::path::Path>, dependencies: Vec<Dependency>) -> 
 
         // commit only relevant files - ignoring staged changes
         Command::new("git")
-            .args(&["commit", "-m", &message, &path.display().to_string(), &gitmodules_path.display().to_string()])
+            .args(&[
+                "commit",
+                "-m",
+                &message,
+                &path.display().to_string(),
+                &gitmodules_path.display().to_string(),
+            ])
             .current_dir(&root)
             .spawn()?
             .wait()?;
